@@ -1,0 +1,613 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Anmol Shine - Industrial Excellence</title>
+<link rel="icon" type="image/jpeg" href="/images/logo.jpg">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#dce9ff",
+                        "secondary-fixed": "#e2e2e2",
+                        "inverse-surface": "#213145",
+                        "primary-fixed": "#d5e3ff",
+                        "on-primary-container": "#799dd6",
+                        "surface-tint": "#3a5f94",
+                        "on-secondary-container": "#616363",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#460000",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#ff6d59",
+                        "on-background": "#0b1c30",
+                        "on-tertiary-fixed-variant": "#930000",
+                        "surface-container": "#e5eeff",
+                        "tertiary-fixed-dim": "#ffb4a8",
+                        "surface": "#f8f9ff",
+                        "tertiary-fixed": "#ffdad4",
+                        "on-secondary-fixed-variant": "#454747",
+                        "secondary": "#5d5f5f",
+                        "inverse-on-surface": "#eaf1ff",
+                        "inverse-primary": "#a7c8ff",
+                        "tertiary-container": "#6e0000",
+                        "on-primary-fixed-variant": "#1f477b",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#003366",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "background": "#f8f9ff",
+                        "outline": "#737780",
+                        "primary": "#001e40",
+                        "surface-variant": "#d3e4fe",
+                        "on-surface-variant": "#43474f",
+                        "on-primary-fixed": "#001b3c",
+                        "on-surface": "#0b1c30",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "outline-variant": "#c3c6d1",
+                        "surface-dim": "#cbdbf5",
+                        "surface-bright": "#f8f9ff",
+                        "primary-fixed-dim": "#a7c8ff",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#dfe0e0",
+                        "on-tertiary-fixed": "#410000",
+                        "on-error-container": "#93000a",
+                        "brand-gold": "#D4AF37"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "margin-desktop": "64px",
+                        "margin-mobile": "16px",
+                        "sm": "8px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "xl": "40px",
+                        "2xl": "64px",
+                        "3xl": "96px"
+                    },
+                    "fontFamily": {
+                        "caption": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hero-gradient {
+            background: linear-gradient(90deg, rgba(0,30,64,0.9) 0%, rgba(0,30,64,0.6) 50%, rgba(0,30,64,0.3) 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(0,30,64,0.15);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+        .float-1 { animation: float 6s ease-in-out infinite; }
+        .float-2 { animation: float 7s ease-in-out infinite 1.5s; }
+        .float-3 { animation: float 8s ease-in-out infinite 3s; }
+
+        @keyframes flowDash {
+            0% { stroke-dashoffset: 200; }
+            100% { stroke-dashoffset: 0; }
+        }
+        .animate-trade-arc {
+            stroke-dasharray: 8 6;
+            animation: flowDash 4s linear infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.4); opacity: 0.4; }
+        }
+        .pulse-node {
+            animation: pulseGlow 2.5s ease-in-out infinite;
+            transform-origin: center;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col">
+<!-- Mini Header -->
+<div class="bg-white text-primary text-xs py-2 px-6 md:flex justify-between items-center hidden w-full border-b border-outline-variant/20">
+<div class="max-w-[1280px] mx-auto w-full flex justify-between items-center">
+<div>M/S Anmol Enterprises — Manufacturer &amp; Exporter of Industrial Thinners &amp; Solvents (Kanpur, UP)</div>
+<div class="flex items-center gap-4">
+<a class="flex items-center gap-1 hover:text-brand-gold transition-colors" href="tel:+919936431461">
+<span class="material-symbols-outlined text-[14px]">call</span> +91-9936431461</a>
+<span class="text-outline-variant">|</span>
+<a class="flex items-center gap-1 hover:text-brand-gold transition-colors" href="mailto:anmolshinegroup@gmail.com">
+<span class="material-symbols-outlined text-[14px]">mail</span> anmolshinegroup@gmail.com</a>
+</div>
+</div>
+</div>
+<!-- Main Header -->
+<header class="bg-surface-container-lowest shadow-sm sticky top-0 z-50 border-b border-outline-variant/20">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-[1280px] mx-auto h-20 relative"><a class="absolute left-margin-desktop -top-3 z-50 bg-white p-2 rounded-b-xl shadow-lg border border-outline-variant/30" href="/">
+<img alt="Anmol Shine Logo" class="h-16 w-auto object-contain" src="/images/logo.jpg">
+</a>
+<!-- Navigation Links -->
+<nav class="hidden md:flex gap-lg font-label-md text-label-md h-full items-center ml-auto">
+<a class="text-primary font-bold border-b-2 border-brand-gold h-full flex items-center px-xs" href="/">Home</a>
+<a class="text-on-surface-variant hover:text-brand-gold transition-colors h-full flex items-center px-xs" href="/about.html">About Us</a>
+<a class="text-on-surface-variant hover:text-brand-gold transition-colors h-full flex items-center px-xs" href="/products.html">Products</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-md">
+<a class="hidden md:flex bg-brand-gold text-white px-lg py-sm rounded font-label-md text-label-md hover:brightness-90 transition-colors shadow-sm" href="/contact.html">
+                Request a Quote
+            </a>
+<button class="md:hidden text-primary p-sm hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow flex flex-col w-full">
+<!-- Hero Section -->
+<section class="w-full relative bg-primary h-[600px] flex items-center">
+<div class="absolute inset-0 z-0 bg-cover bg-center" style="background-image: linear-gradient(rgba(0, 30, 64, 0.8), rgba(0, 30, 64, 0.8)), url(&quot;/images/company/products-display.jpg&quot;);"></div>
+<div class="absolute inset-0 z-10 hero-gradient"></div>
+<div class="relative z-20 w-full px-margin-desktop max-w-[1280px] mx-auto flex items-center justify-between gap-lg">
+<div class="flex flex-col items-start gap-lg w-full lg:w-1/2">
+<span class="text-brand-gold font-label-md text-label-md tracking-widest uppercase bg-white/10 px-sm py-xs rounded">Anmol Shine: Quality Assured</span>
+<h1 class="font-display-lg text-display-lg text-white font-extrabold max-w-[800px] leading-tight">Premium Quality<br><span>Thinners, Chemicals &amp;</span><br><span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-brand-gold">Petrochemical Range</span></h1>
+<div class="space-y-sm text-primary-fixed-dim font-body-lg text-body-lg max-w-[600px]">
+<p class="flex items-center gap-sm"><span class="material-symbols-outlined text-brand-gold text-[20px]">settings</span>Delivering high quality solutions across 6+ international markets</p>
+<p class="flex items-center gap-sm"><span class="material-symbols-outlined text-brand-gold text-[20px]">handshake</span>20+ years of providing value with trust and excellence</p>
+<p class="flex items-center gap-sm"><span class="material-symbols-outlined text-brand-gold text-[20px]">science</span>Focused on innovation and R&amp;D led industrial expertise</p>
+</div>
+<div class="flex gap-md mt-sm">
+<a href="/contact.html" class="bg-brand-gold text-white px-lg py-md rounded font-label-md text-label-md hover:brightness-90 transition-colors shadow-lg flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">chat</span> Talk to an Expert
+                </a>
+<a href="/products.html" class="bg-transparent border border-white/30 text-white px-lg py-md rounded font-label-md text-label-md hover:bg-white/10 transition-colors flex items-center gap-xs">Explore Products <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
+</div>
+</div>
+<div class="hidden lg:block relative w-1/2 h-[450px]"><div class="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border border-white/20 group">
+<div class="flex h-full transition-transform duration-700 ease-in-out" id="hero-slider" style="transform: translateX(0%);">
+<img alt="Anmol Shine Product Display" class="w-full h-full object-cover flex-shrink-0" src="/images/company/products-display.jpg">
+<img alt="General Purpose Thinner GP-50" class="w-full h-full object-cover flex-shrink-0" src="/images/products/gp-50-general-purpose-thinner.jpg">
+<img alt="Hi-Gloss Automotive Thinner SP-56" class="w-full h-full object-cover flex-shrink-0" src="/images/products/sp-56-higloss-thinner.jpg">
+<img alt="Retarder-Cum-Thinner RT-105" class="w-full h-full object-cover flex-shrink-0" src="/images/products/rt-105-retarder-thinner.jpg">
+<img alt="Mineral Turpentine Oil" class="w-full h-full object-cover flex-shrink-0" src="/images/products/mineral-turpentine-oil-mto.jpg">
+</div>
+<div class="absolute bottom-lg left-1/2 -translate-x-1/2 flex gap-sm z-20" id="slider-dots">
+<div class="w-2 h-2 rounded-full bg-brand-gold cursor-pointer" onclick="goToSlide(0)"></div>
+<div class="w-2 h-2 rounded-full bg-white/50 cursor-pointer" onclick="goToSlide(1)"></div>
+<div class="w-2 h-2 rounded-full bg-white/50 cursor-pointer" onclick="goToSlide(2)"></div>
+<div class="w-2 h-2 rounded-full bg-white/50 cursor-pointer" onclick="goToSlide(3)"></div>
+<div class="w-2 h-2 rounded-full bg-white/50 cursor-pointer" onclick="goToSlide(4)"></div>
+</div>
+<div class="absolute inset-0 flex items-center justify-between px-md opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center hover:bg-brand-gold transition-colors" onclick="prevSlide()">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center hover:bg-brand-gold transition-colors" onclick="nextSlide()">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div></div>
+</div>
+</section>
+<!-- Trust Signals Section -->
+<section class="w-full py-2xl px-margin-desktop bg-surface-container-lowest border-b border-outline-variant/20">
+<div class="max-w-[1280px] mx-auto flex flex-col items-center gap-xl text-center">
+<div class="space-y-xs">
+<span class="font-label-md text-label-md text-primary tracking-widest uppercase">Why Trust Us?</span>
+<h2 class="font-headline-lg text-headline-lg font-bold text-primary"><span class="text-brand-gold">13+ Years</span> of Industrial Excellence</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-xl w-full mt-lg">
+<div class="flex flex-col items-center gap-sm p-lg rounded-2xl bg-surface hover:bg-surface-container transition-colors card-hover">
+<div class="w-16 h-16 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-sm">
+<span class="material-symbols-outlined text-[32px]">language</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary text-center">Global Reliability</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-center">Trusted in 10+ countries worldwide with consistent supply chains.</p>
+</div>
+<div class="flex flex-col items-center gap-sm p-lg rounded-2xl bg-surface hover:bg-surface-container transition-colors card-hover">
+<div class="w-16 h-16 rounded-full bg-brand-gold/10 text-brand-gold flex items-center justify-center mb-sm">
+<span class="material-symbols-outlined text-[32px]">engineering</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary text-center">Engineered for Performance</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-center">Formulated for optimal drying times and superior chemical properties.</p>
+</div>
+<div class="flex flex-col items-center gap-sm p-lg rounded-2xl bg-surface hover:bg-surface-container transition-colors card-hover">
+<div class="w-16 h-16 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-sm">
+<span class="material-symbols-outlined text-[32px]">savings</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary text-center">Economical Solutions</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-center">Cost-effective solvents tailored for your manufacturing needs.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Flagship Products Section (rendered dynamically from the products API) -->
+<section class="w-full py-3xl px-margin-desktop bg-surface">
+<div class="max-w-[1280px] mx-auto flex flex-col gap-2xl">
+<div class="text-center space-y-sm">
+<span class="font-label-md text-label-md text-brand-gold tracking-widest uppercase">In Search for the Perfect Solution?</span>
+<h2 class="font-display-lg text-display-lg font-bold text-primary">Introducing Our <span class="text-brand-gold">Flagship Products</span>.<br>Where Quality Meets Value.</h2>
+</div>
+<div id="products-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg">
+<!-- Product cards are injected here by /js/products.js after fetching /api/products -->
+<div class="col-span-full text-center text-on-surface-variant font-body-md text-body-md py-xl">Loading products…</div>
+</div>
+<div class="flex justify-center mt-lg">
+<a href="/products.html" class="bg-brand-gold text-white px-xl py-md rounded font-label-md text-label-md hover:brightness-90 transition-colors shadow-sm inline-block">
+                View all products
+            </a>
+</div>
+</div>
+</section>
+<!-- Global Reach Section -->
+<section class="w-full bg-primary py-3xl px-margin-desktop text-on-primary">
+<div class="max-w-[1280px] mx-auto flex flex-col items-center gap-xl">
+<div class="text-center space-y-sm max-w-[800px]">
+<span class="font-label-md text-label-md text-primary-fixed-dim tracking-widest uppercase">Looking for a Reliable Partner?</span>
+<h2 class="font-display-lg text-display-lg font-bold text-white">Trusted by Global Leaders from <span class="text-brand-gold">10+ Countries</span>.</h2>
+</div>
+<!-- Glowing Global Connectivity Globe -->
+<div class="w-full max-w-[950px] relative flex flex-col justify-center items-center my-6">
+  <div class="w-full relative rounded-3xl bg-slate-950/80 border border-brand-gold/20 p-4 md:p-8 shadow-[0_0_50px_rgba(212,175,55,0.15)] overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.12)_0%,transparent_70%)] pointer-events-none"></div>
+
+    <svg viewBox="0 0 900 480" class="w-full h-auto drop-shadow-[0_0_25px_rgba(212,175,55,0.3)] select-none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="goldGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+        <filter id="cyanGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="4" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+        <linearGradient id="arcGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.9" />
+          <stop offset="50%" stop-color="#60A5FA" stop-opacity="1" />
+          <stop offset="100%" stop-color="#D4AF37" stop-opacity="0.9" />
+        </linearGradient>
+        <linearGradient id="globeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#021529" />
+          <stop offset="100%" stop-color="#000914" />
+        </linearGradient>
+      </defs>
+
+      <!-- Globe Sphere -->
+      <circle cx="450" cy="240" r="210" fill="url(#globeGrad)" stroke="#D4AF37" stroke-opacity="0.25" stroke-width="1.5" />
+      <circle cx="450" cy="240" r="210" fill="none" stroke="#60A5FA" stroke-opacity="0.15" stroke-width="6" filter="url(#cyanGlow)" />
+
+      <!-- Graticule Lines -->
+      <g stroke="#D4AF37" stroke-opacity="0.12" stroke-width="1" fill="none">
+        <ellipse cx="450" cy="240" rx="210" ry="70" />
+        <ellipse cx="450" cy="240" rx="210" ry="140" />
+        <line x1="240" y1="240" x2="660" y2="240" />
+        <ellipse cx="450" cy="240" rx="70" ry="210" />
+        <ellipse cx="450" cy="240" rx="140" ry="210" />
+        <line x1="450" y1="30" x2="450" y2="450" />
+      </g>
+
+      <!-- Continent Silhouette Outlines -->
+      <!-- Asia & India -->
+      <path d="M 500 150 Q 530 140 560 160 T 600 180 T 640 220 T 620 280 T 570 270 T 540 240 T 510 230 T 490 200 T 480 170 Z" fill="#D4AF37" fill-opacity="0.18" stroke="#D4AF37" stroke-opacity="0.6" stroke-width="1.5" filter="url(#goldGlow)" />
+      <!-- Europe -->
+      <path d="M 400 130 Q 430 120 460 140 T 450 170 T 420 180 T 390 160 Z" fill="#60A5FA" fill-opacity="0.15" stroke="#60A5FA" stroke-opacity="0.5" stroke-width="1.5" />
+      <!-- Africa -->
+      <path d="M 400 190 Q 440 190 470 230 T 450 310 T 410 320 T 380 250 T 390 200 Z" fill="#60A5FA" fill-opacity="0.12" stroke="#60A5FA" stroke-opacity="0.4" stroke-width="1.2" />
+      <!-- North America -->
+      <path d="M 270 120 Q 330 110 350 150 T 330 210 T 260 210 T 250 160 Z" fill="#60A5FA" fill-opacity="0.15" stroke="#60A5FA" stroke-opacity="0.5" stroke-width="1.5" />
+      <!-- Australia -->
+      <path d="M 590 300 Q 640 290 660 330 T 620 360 T 580 340 Z" fill="#D4AF37" fill-opacity="0.15" stroke="#D4AF37" stroke-opacity="0.5" stroke-width="1.2" />
+
+      <!-- Glowing Trade Arcs -->
+      <g fill="none" stroke="url(#arcGrad)" stroke-width="2" filter="url(#goldGlow)">
+        <path d="M 515 205 Q 490 190 465 215" class="animate-trade-arc" />
+        <path d="M 515 205 Q 480 195 450 225" class="animate-trade-arc" />
+        <path d="M 515 205 Q 460 145 425 160" class="animate-trade-arc" />
+        <path d="M 515 205 Q 445 135 395 150" class="animate-trade-arc" />
+        <path d="M 515 205 Q 390 105 310 175" class="animate-trade-arc" />
+        <path d="M 515 205 Q 485 240 445 270" class="animate-trade-arc" />
+        <path d="M 515 205 Q 555 220 575 255" class="animate-trade-arc" />
+        <path d="M 515 205 Q 585 165 630 185" class="animate-trade-arc" />
+        <path d="M 515 205 Q 590 280 625 330" class="animate-trade-arc" />
+      </g>
+
+      <!-- Glowing Pins & Badges -->
+      
+      <!-- Kanpur HQ (India) -->
+      <g transform="translate(515, 205)">
+        <circle r="14" fill="#D4AF37" fill-opacity="0.25" class="pulse-node" />
+        <circle r="8" fill="#D4AF37" fill-opacity="0.6" filter="url(#goldGlow)" />
+        <circle r="4" fill="#FFFFFF" />
+        <g transform="translate(12, -8)">
+          <rect x="-4" y="-12" width="130" height="22" rx="4" fill="#001e40" fill-opacity="0.9" stroke="#D4AF37" stroke-width="1" />
+          <text x="4" y="2" fill="#D4AF37" font-size="11" font-weight="bold" font-family="sans-serif">🇮🇳 Kanpur (HQ)</text>
+        </g>
+      </g>
+
+      <!-- UAE -->
+      <g transform="translate(465, 215)">
+        <circle r="8" fill="#60A5FA" fill-opacity="0.3" class="pulse-node" />
+        <circle r="4" fill="#60A5FA" filter="url(#cyanGlow)" />
+        <g transform="translate(-80, -22)">
+          <rect x="0" y="0" width="75" height="18" rx="3" fill="#021529" fill-opacity="0.85" stroke="#60A5FA" stroke-width="0.8" />
+          <text x="6" y="13" fill="#E2E8F0" font-size="10" font-weight="500" font-family="sans-serif">🇦🇪 UAE</text>
+        </g>
+      </g>
+
+      <!-- Saudi Arabia -->
+      <g transform="translate(450, 225)">
+        <circle r="7" fill="#60A5FA" fill-opacity="0.3" class="pulse-node" />
+        <circle r="3.5" fill="#60A5FA" />
+      </g>
+
+      <!-- Germany -->
+      <g transform="translate(425, 160)">
+        <circle r="8" fill="#D4AF37" fill-opacity="0.3" class="pulse-node" />
+        <circle r="4" fill="#D4AF37" filter="url(#goldGlow)" />
+        <g transform="translate(-75, -20)">
+          <rect x="0" y="0" width="70" height="18" rx="3" fill="#021529" fill-opacity="0.85" stroke="#D4AF37" stroke-width="0.8" />
+          <text x="6" y="13" fill="#E2E8F0" font-size="10" font-weight="500" font-family="sans-serif">🇩🇪 Germany</text>
+        </g>
+      </g>
+
+      <!-- UK -->
+      <g transform="translate(395, 150)">
+        <circle r="7" fill="#60A5FA" fill-opacity="0.3" class="pulse-node" />
+        <circle r="3.5" fill="#60A5FA" />
+        <g transform="translate(-55, -20)">
+          <rect x="0" y="0" width="50" height="18" rx="3" fill="#021529" fill-opacity="0.85" stroke="#60A5FA" stroke-width="0.8" />
+          <text x="6" y="13" fill="#E2E8F0" font-size="10" font-weight="500" font-family="sans-serif">🇬🇧 UK</text>
+        </g>
+      </g>
+
+      <!-- USA -->
+      <g transform="translate(310, 175)">
+        <circle r="8" fill="#D4AF37" fill-opacity="0.3" class="pulse-node" />
+        <circle r="4" fill="#D4AF37" filter="url(#goldGlow)" />
+        <g transform="translate(-60, -22)">
+          <rect x="0" y="0" width="55" height="18" rx="3" fill="#021529" fill-opacity="0.85" stroke="#D4AF37" stroke-width="0.8" />
+          <text x="6" y="13" fill="#E2E8F0" font-size="10" font-weight="500" font-family="sans-serif">🇺🇸 USA</text>
+        </g>
+      </g>
+
+      <!-- Kenya -->
+      <g transform="translate(445, 270)">
+        <circle r="7" fill="#60A5FA" fill-opacity="0.3" class="pulse-node" />
+        <circle r="3.5" fill="#60A5FA" />
+        <g transform="translate(10, -8)">
+          <rect x="0" y="0" width="65" height="18" rx="3" fill="#021529" fill-opacity="0.85" stroke="#60A5FA" stroke-width="0.8" />
+          <text x="6" y="13" fill="#E2E8F0" font-size="10" font-weight="500" font-family="sans-serif">🇰🇪 Kenya</text>
+        </g>
+      </g>
+
+      <!-- Singapore -->
+      <g transform="translate(575, 255)">
+        <circle r="7.5" fill="#D4AF37" fill-opacity="0.3" class="pulse-node" />
+        <circle r="4" fill="#D4AF37" filter="url(#goldGlow)" />
+        <g transform="translate(10, -8)">
+          <rect x="0" y="0" width="85" height="18" rx="3" fill="#021529" fill-opacity="0.85" stroke="#D4AF37" stroke-width="0.8" />
+          <text x="6" y="13" fill="#E2E8F0" font-size="10" font-weight="500" font-family="sans-serif">🇸🇬 Singapore</text>
+        </g>
+      </g>
+
+      <!-- Japan -->
+      <g transform="translate(630, 185)">
+        <circle r="7" fill="#60A5FA" fill-opacity="0.3" class="pulse-node" />
+        <circle r="3.5" fill="#60A5FA" />
+        <g transform="translate(10, -8)">
+          <rect x="0" y="0" width="60" height="18" rx="3" fill="#021529" fill-opacity="0.85" stroke="#60A5FA" stroke-width="0.8" />
+          <text x="6" y="13" fill="#E2E8F0" font-size="10" font-weight="500" font-family="sans-serif">🇯🇵 Japan</text>
+        </g>
+      </g>
+
+      <!-- Australia -->
+      <g transform="translate(625, 330)">
+        <circle r="8" fill="#D4AF37" fill-opacity="0.3" class="pulse-node" />
+        <circle r="4" fill="#D4AF37" filter="url(#goldGlow)" />
+        <g transform="translate(-75, 8)">
+          <rect x="0" y="0" width="75" height="18" rx="3" fill="#021529" fill-opacity="0.85" stroke="#D4AF37" stroke-width="0.8" />
+          <text x="6" y="13" fill="#E2E8F0" font-size="10" font-weight="500" font-family="sans-serif">🇦🇺 Australia</text>
+        </g>
+      </g>
+    </svg>
+
+    <!-- Legend Bar Below Globe -->
+    <div class="flex flex-wrap justify-center items-center gap-6 mt-4 pt-3 border-t border-white/10 text-xs text-primary-fixed-dim/90">
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-brand-gold shadow-[0_0_8px_#D4AF37]"></span>
+        <span>Kanpur Manufacturing Hub</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-blue-400 shadow-[0_0_8px_#60A5FA]"></span>
+        <span>Active Export Countries</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-6 h-0.5 bg-gradient-to-r from-brand-gold to-blue-400"></span>
+        <span>Global Supply Arcs</span>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Stats -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-xl w-full border-t border-white/20 pt-xl">
+<div class="flex flex-col items-center text-center gap-xs">
+<span class="font-display-lg text-display-lg font-bold text-white">13+</span>
+<h4 class="font-label-md text-label-md text-primary-fixed-dim uppercase tracking-wider">Years of Excellence</h4>
+<p class="font-caption text-caption text-primary-fixed-dim/80 mt-xs max-w-[200px]">Serving global leaders with consistent quality.</p>
+</div>
+<div class="flex flex-col items-center text-center gap-xs">
+<span class="font-display-lg text-display-lg font-bold text-white">ISO 14001</span>
+<h4 class="font-label-md text-label-md text-primary-fixed-dim uppercase tracking-wider">Certified Quality</h4>
+<a class="font-caption text-caption text-brand-gold hover:text-white transition-colors mt-xs flex items-center gap-xs" href="#">View our certificates <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+</div>
+<div class="flex flex-col items-center text-center gap-xs">
+<span class="font-display-lg text-display-lg font-bold text-white">150 MT</span>
+<h4 class="font-label-md text-label-md text-primary-fixed-dim uppercase tracking-wider">Monthly Capacity</h4>
+<p class="font-caption text-caption text-primary-fixed-dim/80 mt-xs max-w-[200px]">We handle 150 MT of solvent orders every month.</p>
+</div>
+</div>
+<div class="flex gap-md mt-xl">
+<a href="/contact.html" class="bg-brand-gold text-white px-lg py-md rounded font-label-md text-label-md hover:brightness-90 transition-colors shadow-sm flex items-center gap-xs">Request a Consultation <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
+<button class="bg-white text-primary px-lg py-md rounded font-label-md text-label-md hover:bg-surface-container transition-colors flex items-center gap-xs">
+                View All Certificates <span class="material-symbols-outlined text-[18px]">description</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Comprehensive Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant/20 pt-2xl pb-xl px-margin-desktop w-full">
+<div class="max-w-[1280px] mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-5 gap-xl pb-xl border-b border-outline-variant/20">
+<!-- Brand Col -->
+<div class="md:col-span-1 flex flex-col gap-sm">
+<a class="flex items-center gap-sm mb-sm" href="/">
+<img alt="Anmol Shine Logo" class="h-12 w-auto object-contain" src="/images/logo.jpg">
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Anmol Shine</span>
+</a>
+<p class="font-caption text-caption text-on-surface-variant leading-relaxed">
+                    M/S Anmol Enterprises - Manufacturer, Exporter, Wholesaler and Retailer of an extensive array of Paint thinner, Industrial Thinner, Mineral Turpentine Oil, and Industrial Chemical Solvents.
+                </p>
+</div>
+<!-- Products Links -->
+<div class="flex flex-col gap-sm">
+<h4 class="font-label-md text-label-md text-primary font-bold mb-xs">Products</h4>
+<a class="font-caption text-caption text-on-surface-variant hover:text-brand-gold transition-colors" href="/products.html">Paint Thinner</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-brand-gold transition-colors" href="/products.html">Mineral Turpentine Oil</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-brand-gold transition-colors" href="/products.html">Industrial Thinner</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-brand-gold transition-colors" href="/products.html">Kerosene Oil</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-brand-gold transition-colors" href="/products.html">Wood Finish Thinner</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-brand-gold transition-colors" href="/products.html">Chemical Solvents</a>
+<a class="font-caption text-caption text-brand-gold font-semibold mt-xs" href="/contact.html">Request a Solution</a>
+</div>
+<!-- About Links -->
+<div class="flex flex-col gap-sm">
+<h4 class="font-label-md text-label-md text-primary font-bold mb-xs">About Us</h4>
+<a class="font-caption text-caption text-on-surface-variant hover:text-brand-gold transition-colors" href="/about.html">Our Profile</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-brand-gold transition-colors" href="/products.html">Products &amp; Services</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-brand-gold transition-colors" href="/contact.html">Contact Us</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-brand-gold transition-colors" href="#">Sitemap</a>
+</div>
+<!-- Contact Info -->
+<div class="flex flex-col gap-sm">
+<h4 class="font-label-md text-label-md text-primary font-bold mb-xs">Get in Touch</h4>
+<p class="font-caption text-caption text-on-surface-variant mb-xs">Questions or feedback? We'd love to hear from you.</p>
+<a class="font-caption text-caption text-on-surface-variant hover:text-brand-gold transition-colors flex items-start gap-xs" href="#">
+<span class="material-symbols-outlined text-[16px] mt-[2px]">location_on</span> 
+                    54 B Vyapar Nagar, Ispat Nagar, Panki, Kanpur - 208001, UP, India
+                </a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-brand-gold transition-colors flex items-center gap-xs" href="tel:+919936431461">
+<span class="material-symbols-outlined text-[16px]">call</span> +91-9936431461
+                </a>
+<div class="flex gap-sm mt-sm">
+<a class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-brand-gold hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">share</span>
+</a>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center mt-xl gap-md">
+<span class="font-caption text-caption text-on-surface-variant">© 2026 Anmol Enterprises. All rights reserved.</span>
+<div class="flex gap-lg">
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+</div>
+</div>
+</div>
+</footer>
+<a onclick="trackWhatsAppClick('Homepage WhatsApp Floating Button')" class="fixed bottom-lg right-margin-desktop z-50 bg-[#25D366] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform" href="https://wa.me/919936431461" target="_blank" rel="noopener"><svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg></a>
+<script src="/js/products.js"></script>
+<script>
+    function trackWhatsAppClick(product = 'General Inquiry') {
+      try {
+        fetch('/api/inquiries/whatsapp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ product_interest: product, page: window.location.pathname })
+        }).catch(() => {});
+      } catch (e) {}
+    }
+
+    const slider = document.getElementById('hero-slider');
+    const dots = document.getElementById('slider-dots').children;
+    let currentSlide = 0;
+    const totalSlides = 5;
+
+    function updateSlider() {
+        slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        for (let i = 0; i < dots.length; i++) {
+            if (i === currentSlide) {
+                dots[i].classList.replace('bg-white/50', 'bg-brand-gold');
+            } else {
+                dots[i].classList.replace('bg-brand-gold', 'bg-white/50');
+            }
+        }
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateSlider();
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateSlider();
+    }
+
+    function goToSlide(index) {
+        currentSlide = index;
+        updateSlider();
+    }
+
+    setInterval(nextSlide, 5000);
+</script>
+
+
+</body></html>
