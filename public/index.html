@@ -163,7 +163,7 @@
 </div>
 <!-- Main Header -->
 <header class="bg-surface-container-lowest shadow-sm sticky top-0 z-50 border-b border-outline-variant/20">
-<div class="flex justify-between items-center w-full px-margin-desktop max-w-[1280px] mx-auto h-20 relative"><a class="absolute left-margin-desktop -top-3 z-50 bg-white p-2 rounded-b-xl shadow-lg border border-outline-variant/30" href="/">
+<div class="flex justify-between items-center w-full px-4 md:px-16 max-w-[1280px] mx-auto h-20 relative"><a class="absolute left-4 md:left-16 -top-3 z-50 bg-white p-2 rounded-b-xl shadow-lg border border-outline-variant/30" href="/">
 <img alt="Anmol Shine Logo" class="h-16 w-auto object-contain" src="/images/logo.jpg">
 </a>
 <!-- Navigation Links -->
@@ -171,24 +171,33 @@
 <a class="text-primary font-bold border-b-2 border-brand-gold h-full flex items-center px-xs" href="/">Home</a>
 <a class="text-on-surface-variant hover:text-brand-gold transition-colors h-full flex items-center px-xs" href="/about.html">About Us</a>
 <a class="text-on-surface-variant hover:text-brand-gold transition-colors h-full flex items-center px-xs" href="/products.html">Products</a>
+<a class="text-on-surface-variant hover:text-brand-gold transition-colors h-full flex items-center px-xs" href="/contact.html">Contact Us</a>
+<a class="text-on-surface-variant hover:text-brand-gold transition-colors h-full flex items-center px-xs" href="/admin.html">Admin</a>
 </nav>
 <!-- Actions -->
 <div class="flex items-center gap-md">
 <a class="hidden md:flex bg-brand-gold text-white px-lg py-sm rounded font-label-md text-label-md hover:brightness-90 transition-colors shadow-sm" href="/contact.html">
                 Request a Quote
             </a>
-<button class="md:hidden text-primary p-sm hover:bg-surface-container rounded-full transition-colors">
-<span class="material-symbols-outlined">menu</span>
-</button>
+<details class="md:hidden relative">
+<summary class="list-none cursor-pointer text-primary p-sm hover:bg-surface-container rounded-full transition-colors"><span class="material-symbols-outlined align-middle">menu</span><span class="sr-only">Open navigation</span></summary>
+<nav class="absolute right-0 top-12 z-50 min-w-48 bg-white border border-outline-variant/30 rounded-lg shadow-lg p-2 flex flex-col gap-1 text-sm font-semibold">
+<a class="text-primary px-3 py-2 rounded hover:bg-surface-container" href="/">Home</a>
+<a class="text-on-surface-variant px-3 py-2 rounded hover:bg-surface-container" href="/about.html">About Us</a>
+<a class="text-on-surface-variant px-3 py-2 rounded hover:bg-surface-container" href="/products.html">Products</a>
+<a class="text-on-surface-variant px-3 py-2 rounded hover:bg-surface-container" href="/contact.html">Contact Us</a>
+<a class="text-on-surface-variant px-3 py-2 rounded hover:bg-surface-container" href="/admin.html">Admin</a>
+</nav>
+</details>
 </div>
 </div>
 </header>
 <main class="flex-grow flex flex-col w-full">
 <!-- Hero Section -->
 <section class="w-full relative bg-primary h-[600px] flex items-center">
-<div class="absolute inset-0 z-0 bg-cover bg-center" style="background-image: linear-gradient(rgba(0, 30, 64, 0.8), rgba(0, 30, 64, 0.8)), url(&quot;/images/company/products-display.jpg&quot;);"></div>
+<div class="absolute inset-0 z-0 bg-cover bg-center" style="background-image: linear-gradient(rgba(0, 30, 64, 0.85), rgba(0, 30, 64, 0.85)), url(&quot;/images/products/thinner-combo-pack.jpg&quot;);"></div>
 <div class="absolute inset-0 z-10 hero-gradient"></div>
-<div class="relative z-20 w-full px-margin-desktop max-w-[1280px] mx-auto flex items-center justify-between gap-lg">
+<div class="relative z-20 w-full px-4 md:px-16 max-w-[1280px] mx-auto flex items-center justify-between gap-lg">
 <div class="flex flex-col items-start gap-lg w-full lg:w-1/2">
 <span class="text-brand-gold font-label-md text-label-md tracking-widest uppercase bg-white/10 px-sm py-xs rounded">Anmol Shine: Quality Assured</span>
 <h1 class="font-display-lg text-display-lg text-white font-extrabold max-w-[800px] leading-tight">Premium Quality<br><span>Thinners, Chemicals &amp;</span><br><span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-brand-gold">Petrochemical Range</span></h1>
@@ -206,7 +215,7 @@
 </div>
 <div class="hidden lg:block relative w-1/2 h-[450px]"><div class="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border border-white/20 group">
 <div class="flex h-full transition-transform duration-700 ease-in-out" id="hero-slider" style="transform: translateX(0%);">
-<img alt="Anmol Shine Product Display" class="w-full h-full object-cover flex-shrink-0" src="/images/company/products-display.jpg">
+<img alt="Anmol Shine Complete Product Pack" class="w-full h-full object-cover flex-shrink-0" src="/images/products/thinner-combo-pack.jpg">
 <img alt="General Purpose Thinner GP-50" class="w-full h-full object-cover flex-shrink-0" src="/images/products/gp-50-general-purpose-thinner.jpg">
 <img alt="Hi-Gloss Automotive Thinner SP-56" class="w-full h-full object-cover flex-shrink-0" src="/images/products/sp-56-higloss-thinner.jpg">
 <img alt="Retarder-Cum-Thinner RT-105" class="w-full h-full object-cover flex-shrink-0" src="/images/products/rt-105-retarder-thinner.jpg">
@@ -231,7 +240,7 @@
 </div>
 </section>
 <!-- Trust Signals Section -->
-<section class="w-full py-2xl px-margin-desktop bg-surface-container-lowest border-b border-outline-variant/20">
+<section class="w-full py-2xl px-4 md:px-16 bg-surface-container-lowest border-b border-outline-variant/20">
 <div class="max-w-[1280px] mx-auto flex flex-col items-center gap-xl text-center">
 <div class="space-y-xs">
 <span class="font-label-md text-label-md text-primary tracking-widest uppercase">Why Trust Us?</span>
@@ -263,7 +272,7 @@
 </div>
 </section>
 <!-- Flagship Products Section (rendered dynamically from the products API) -->
-<section class="w-full py-3xl px-margin-desktop bg-surface">
+<section class="w-full py-3xl px-4 md:px-16 bg-surface">
 <div class="max-w-[1280px] mx-auto flex flex-col gap-2xl">
 <div class="text-center space-y-sm">
 <span class="font-label-md text-label-md text-brand-gold tracking-widest uppercase">In Search for the Perfect Solution?</span>
@@ -281,7 +290,7 @@
 </div>
 </section>
 <!-- Global Reach Section -->
-<section class="w-full bg-primary py-3xl px-margin-desktop text-on-primary">
+<section class="w-full bg-primary py-3xl px-4 md:px-16 text-on-primary">
 <div class="max-w-[1280px] mx-auto flex flex-col items-center gap-xl">
 <div class="text-center space-y-sm max-w-[800px]">
 <span class="font-label-md text-label-md text-primary-fixed-dim tracking-widest uppercase">Looking for a Reliable Partner?</span>
@@ -503,7 +512,7 @@
 </section>
 </main>
 <!-- Comprehensive Footer -->
-<footer class="bg-surface-container-lowest border-t border-outline-variant/20 pt-2xl pb-xl px-margin-desktop w-full">
+<footer class="bg-surface-container-lowest border-t border-outline-variant/20 pt-2xl pb-xl px-4 md:px-16 w-full">
 <div class="max-w-[1280px] mx-auto">
 <div class="grid grid-cols-1 md:grid-cols-5 gap-xl pb-xl border-b border-outline-variant/20">
 <!-- Brand Col -->

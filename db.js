@@ -135,17 +135,33 @@ if (DatabaseSync) {
 
       CREATE TABLE IF NOT EXISTS inquiries (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        type TEXT NOT NULL CHECK (type IN ('quote', 'contact')),
+        type TEXT NOT NULL,
         name TEXT NOT NULL,
         email TEXT NOT NULL,
         phone TEXT,
         company TEXT,
         product_interest TEXT,
         message TEXT NOT NULL,
-        status TEXT NOT NULL DEFAULT 'new' CHECK (status IN ('new', 'contacted', 'closed')),
+        status TEXT NOT NULL DEFAULT 'new',
+        notes TEXT,
+        created_at TEXT DEFAULT (datetime('now'))
+      );
+
+      CREATE TABLE IF NOT EXISTS visitor_logs (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        path TEXT,
+        ip TEXT,
+        country TEXT,
+        city TEXT,
+        user_agent TEXT,
+        referrer TEXT,
         created_at TEXT DEFAULT (datetime('now'))
       );
     `);
+
+    try {
+      sqliteDb.exec('ALTER TABLE inquiries ADD COLUMN notes TEXT;');
+    } catch (e) {}
 
     sqliteDb.exec('DELETE FROM products;');
     const insert = sqliteDb.prepare(`
@@ -175,6 +191,34 @@ if (DatabaseSync) {
   }
 }
 
+// Global visitor memory store (works across both SQLite and serverless memory fallback)
+const visitorLogsMem = [];
+
+// Helper function to record visitor traffic / edge requests
+function logVisitor(req) {
+  const visitor = {
+    path: req.path || req.url || '/',
+    ip: req.headers['x-forwarded-for'] || req.socket?.remoteAddress || '127.0.0.1',
+    country: req.headers['x-vercel-ip-country'] || 'India',
+    city: req.headers['x-vercel-ip-city'] || 'Kanpur',
+    user_agent: req.headers['user-agent'] || 'Unknown Device',
+    referrer: req.headers['referer'] || req.headers['referrer'] || 'Direct',
+    created_at: new Date().toISOString()
+  };
+
+  visitorLogsMem.unshift(visitor);
+  if (visitorLogsMem.length > 500) visitorLogsMem.pop();
+
+  if (db && typeof db.prepare === 'function') {
+    try {
+      db.prepare(`
+        INSERT INTO visitor_logs (path, ip, country, city, user_agent, referrer, created_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+      `).run(visitor.path, visitor.ip, visitor.country, visitor.city, visitor.user_agent, visitor.referrer, visitor.created_at);
+    } catch (e) {}
+  }
+}
+
 // Fallback in-memory DB if DatabaseSync is unavailable or fails on serverless
 if (!db) {
   let productsMem = [...seedProducts];
@@ -198,18 +242,27 @@ if (!db) {
               product_interest: params[5] || null,
               message: params[6] || null,
               status: params[7] || 'new',
+              notes: params[8] || null,
               created_at: new Date().toISOString()
             };
             inquiriesMem.push(newInq);
             return { lastInsertRowid: newInq.id, changes: 1 };
           }
-          if (s.includes('update inquiries set status')) {
-            const [status, id] = params;
-            const item = inquiriesMem.find(i => String(i.id) === String(id));
-            if (item) {
-              item.status = status;
-              return { changes: 1 };
+          if (s.includes('update inquiries')) {
+            const [val1, val2] = params;
+            if (s.includes('notes =')) {
+              const item = inquiriesMem.find(i => String(i.id) === String(val2));
+              if (item) { item.notes = val1; return { changes: 1 }; }
+            } else if (s.includes('status =')) {
+              const item = inquiriesMem.find(i => String(i.id) === String(val2));
+              if (item) { item.status = val1; return { changes: 1 }; }
             }
+            return { changes: 0 };
+          }
+          if (s.includes('delete from inquiries')) {
+            const id = params[0];
+            const idx = inquiriesMem.findIndex(i => String(i.id) === String(id));
+            if (idx !== -1) { inquiriesMem.splice(idx, 1); return { changes: 1 }; }
             return { changes: 0 };
           }
           return { lastInsertRowid: 1, changes: 1 };
@@ -226,6 +279,9 @@ if (!db) {
           }
           if (s.includes('select count(*) as n from inquiries')) {
             return { n: inquiriesMem.length };
+          }
+          if (s.includes('select count(*) as n from visitor_logs')) {
+            return { n: visitorLogsMem.length };
           }
           return undefined;
         },
@@ -244,11 +300,20 @@ if (!db) {
             }
             return res.reverse();
           }
+          if (s.includes('from visitor_logs')) {
+            return visitorLogsMem.slice(0, 100);
+          }
           if (s.includes('date(created_at)')) {
             return [];
           }
           if (s.includes('product_interest')) {
-            return [];
+            const map = {};
+            inquiriesMem.forEach(i => {
+              if (i.product_interest) {
+                map[i.product_interest] = (map[i.product_interest] || 0) + 1;
+              }
+            });
+            return Object.keys(map).map(p => ({ product_interest: p, count: map[p] }));
           }
           return [];
         }
@@ -256,5 +321,14 @@ if (!db) {
     }
   };
 }
+
+db.logVisitor = logVisitor;
+db.getVisitorLogs = function() {
+  try {
+    return db.prepare('SELECT * FROM visitor_logs ORDER BY id DESC LIMIT 100').all();
+  } catch (e) {
+    return visitorLogsMem;
+  }
+};
 
 module.exports = db;

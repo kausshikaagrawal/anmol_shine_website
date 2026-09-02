@@ -48,12 +48,9 @@ anmol-shine/
    ```
 
 2. **Configure environment variables**
-   ```bash
-   cp .env.example .env
-   ```
-   Then open `.env` and set `ADMIN_KEY` to a long random string (e.g. run
-   `openssl rand -hex 16` and paste the result). This key is what protects
-   `/admin.html` and all `/api/admin/*` routes.
+  Set `PORT`, `DB_PATH`, and especially `ADMIN_KEY` in your hosting provider's
+  environment settings or in your local shell. Do not create or commit env files.
+  `ADMIN_KEY` is what protects `/admin.html` and all `/api/admin/*` routes.
 
 3. **Run it**
    ```bash

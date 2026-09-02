@@ -27,6 +27,16 @@ const inquiriesLimiter = rateLimit({
   message: { error: 'Too many submissions from this device. Please try again later.' }
 });
 
+const db = require('./db');
+
+// Visitor / Edge Request Logging Middleware
+app.use((req, res, next) => {
+  if (req.method === 'GET' && !req.path.startsWith('/api') && !req.path.match(/\.(js|css|jpg|png|jpeg|svg|ico)$/)) {
+    try { db.logVisitor(req); } catch(e) {}
+  }
+  next();
+});
+
 // ---- Static frontend ----
 app.use(express.static(path.join(__dirname, 'public')));
 

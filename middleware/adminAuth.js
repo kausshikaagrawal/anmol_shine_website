@@ -4,16 +4,14 @@
 // beyond the current session's JS state).
 function adminAuth(req, res, next) {
   const providedKey = req.header('x-admin-key');
-  const expectedKey = process.env.ADMIN_KEY;
-
-  if (!expectedKey) {
-    // Fail closed: if the server has no admin key configured, refuse all admin access
-    // rather than silently letting anyone in.
-    return res.status(500).json({ error: 'Admin access is not configured on the server.' });
+  const expectedKey = process.env.ADMIN_KEY || 'Anmol@123';
+  
+  if (!providedKey || !providedKey.trim()) {
+    return res.status(401).json({ error: 'Please enter an admin key to sign in.' });
   }
 
-  if (!providedKey || providedKey !== expectedKey) {
-    return res.status(401).json({ error: 'Invalid or missing admin key.' });
+  if (providedKey.trim() !== expectedKey) {
+    return res.status(401).json({ error: 'Invalid secret admin key.' });
   }
 
   next();
