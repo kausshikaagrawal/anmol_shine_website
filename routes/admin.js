@@ -7,7 +7,7 @@ const router = express.Router();
 // POST /api/admin/login - authenticate/verify admin key
 router.post('/login', (req, res) => {
   const { key } = req.body || {};
-  const expectedKey = process.env.ADMIN_KEY || 'Anmol@123';
+  const expectedKey = process.env.ADMIN_KEY || 'Anmol@12345';
 
   if (key && key.trim() === expectedKey) {
     return res.json({ success: true, message: 'Authenticated successfully.' });
@@ -121,7 +121,32 @@ router.get('/stats', (req, res) => {
     `).all() || [];
 
     const visitorLogs = typeof db.getVisitorLogs === 'function' ? db.getVisitorLogs() : [];
-    const totalVisitors = visitorLogs.length;
+    const totalVisitors = typeof db.getVisitorCount === 'function' ? db.getVisitorCount() : visitorLogs.length;
+
+    const pageViews = {};
+    const cityViews = {};
+    const referrerViews = {};
+    const deviceViews = { Mobile: 0, Desktop: 0, Tablet: 0 };
+
+    visitorLogs.forEach(v => {
+      const page = v.path || '/';
+      pageViews[page] = (pageViews[page] || 0) + 1;
+
+      const city = v.city || 'Kanpur';
+      cityViews[city] = (cityViews[city] || 0) + 1;
+
+      const ref = v.referrer || 'Direct';
+      referrerViews[ref] = (referrerViews[ref] || 0) + 1;
+
+      const ua = (v.user_agent || '').toLowerCase();
+      if (ua.includes('mobile') || ua.includes('android') || ua.includes('iphone')) {
+        deviceViews.Mobile++;
+      } else if (ua.includes('ipad') || ua.includes('tablet')) {
+        deviceViews.Tablet++;
+      } else {
+        deviceViews.Desktop++;
+      }
+    });
 
     res.json({
       totalInquiries,
@@ -129,7 +154,11 @@ router.get('/stats', (req, res) => {
       quoteRequests,
       totalVisitors,
       topProducts,
-      visitorLogs: visitorLogs.slice(0, 50)
+      pageViews,
+      cityViews,
+      referrerViews,
+      deviceViews,
+      visitorLogs: visitorLogs.slice(0, 200)
     });
   } catch (err) {
     console.error('Error fetching admin stats:', err);

@@ -112,6 +112,58 @@ window.switchTab = function(tabName) {
   });
 };
 
+let currentVisitorLogsData = [];
+
+function renderProgressBreakdown(containerId, dataMap, labelSuffix = 'Visits', gradientClass = 'from-blue-600 to-indigo-600') {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  if (!dataMap || !Object.keys(dataMap).length) {
+    container.innerHTML = '<div class="text-xs text-slate-400">No data recorded yet.</div>';
+    return;
+  }
+
+  const entries = Object.entries(dataMap).sort((a, b) => b[1] - a[1]);
+  const maxVal = Math.max(...entries.map(e => e[1]), 1);
+
+  container.innerHTML = entries.map(([key, count]) => {
+    const pct = Math.round((count / maxVal) * 100);
+    return `
+      <div>
+        <div class="flex justify-between text-xs font-bold text-slate-700 mb-1">
+          <span class="truncate max-w-[200px]" title="${key}">${key}</span>
+          <span>${count} ${labelSuffix}</span>
+        </div>
+        <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+          <div class="h-full bg-gradient-to-r ${gradientClass} rounded-full" style="width: ${pct}%"></div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderVisitorLogs(logs) {
+  const visitorTbody = document.getElementById('visitor-logs-body');
+  if (!visitorTbody) return;
+  if (logs && logs.length) {
+    visitorTbody.innerHTML = logs.map(v => `
+      <tr class="hover:bg-slate-50 border-t border-slate-100">
+        <td class="p-3 text-slate-500 whitespace-nowrap">${new Date(v.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
+        <td class="p-3 font-semibold text-[#001e40]">${v.path}</td>
+        <td class="p-3">
+          <span class="inline-flex items-center gap-1 font-medium text-slate-700">
+            📍 ${v.city || 'Kanpur'}, ${v.country || 'India'}
+          </span>
+        </td>
+        <td class="p-3 text-slate-500 font-mono text-[11px]">${v.ip || '127.0.0.1'}</td>
+        <td class="p-3 text-slate-500 max-w-[150px] truncate" title="${v.referrer}">${v.referrer}</td>
+        <td class="p-3 text-slate-400 max-w-[200px] truncate" title="${v.user_agent}">${v.user_agent}</td>
+      </tr>
+    `).join('');
+  } else {
+    visitorTbody.innerHTML = '<tr><td colspan="6" class="p-6 text-center text-slate-400">No matching edge visitor logs found.</td></tr>';
+  }
+}
+
 // Load Stats & Visitor Logs
 async function loadStats() {
   try {
@@ -123,46 +175,36 @@ async function loadStats() {
 
     // Render Product Demand Breakdown
     const topProductsEl = document.getElementById('top-products-container');
-    if (!stats.topProducts || !stats.topProducts.length) {
-      topProductsEl.innerHTML = '<div class="text-xs text-slate-400">No product demand data registered yet.</div>';
-    } else {
-      const maxCount = Math.max(...stats.topProducts.map(p => p.count), 1);
-      topProductsEl.innerHTML = stats.topProducts.map(p => {
-        const pct = Math.round((p.count / maxCount) * 100);
-        return `
-          <div>
-            <div class="flex justify-between text-xs font-bold text-slate-700 mb-1">
-              <span>${p.product_interest}</span>
-              <span>${p.count} Inquiries</span>
+    if (topProductsEl) {
+      if (!stats.topProducts || !stats.topProducts.length) {
+        topProductsEl.innerHTML = '<div class="text-xs text-slate-400">No product demand data registered yet.</div>';
+      } else {
+        const maxCount = Math.max(...stats.topProducts.map(p => p.count), 1);
+        topProductsEl.innerHTML = stats.topProducts.map(p => {
+          const pct = Math.round((p.count / maxCount) * 100);
+          return `
+            <div>
+              <div class="flex justify-between text-xs font-bold text-slate-700 mb-1">
+                <span>${p.product_interest}</span>
+                <span>${p.count} Inquiries</span>
+              </div>
+              <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-[#001e40] to-[#D4AF37] rounded-full" style="width: ${pct}%"></div>
+              </div>
             </div>
-            <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden">
-              <div class="h-full bg-gradient-to-r from-[#001e40] to-[#D4AF37] rounded-full" style="width: ${pct}%"></div>
-            </div>
-          </div>
-        `;
-      }).join('');
+          `;
+        }).join('');
+      }
     }
 
-    // Render Visitor Logs
-    const visitorTbody = document.getElementById('visitor-logs-body');
-    if (stats.visitorLogs && stats.visitorLogs.length) {
-      visitorTbody.innerHTML = stats.visitorLogs.map(v => `
-        <tr class="hover:bg-slate-50">
-          <td class="p-3 text-slate-500 whitespace-nowrap">${new Date(v.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
-          <td class="p-3 font-semibold text-[#001e40]">${v.path}</td>
-          <td class="p-3">
-            <span class="inline-flex items-center gap-1 font-medium text-slate-700">
-              📍 ${v.city || 'Kanpur'}, ${v.country || 'India'}
-            </span>
-          </td>
-          <td class="p-3 text-slate-500 font-mono text-[11px]">${v.ip || '127.0.0.1'}</td>
-          <td class="p-3 text-slate-500 max-w-[150px] truncate" title="${v.referrer}">${v.referrer}</td>
-          <td class="p-3 text-slate-400 max-w-[200px] truncate" title="${v.user_agent}">${v.user_agent}</td>
-        </tr>
-      `).join('');
-    } else {
-      visitorTbody.innerHTML = '<tr><td colspan="6" class="p-6 text-center text-slate-400">No edge visitor logs recorded yet.</td></tr>';
-    }
+    // Render Analytics Cards
+    renderProgressBreakdown('top-pages-container', stats.pageViews, 'Views', 'from-indigo-600 to-purple-600');
+    renderProgressBreakdown('top-cities-container', stats.cityViews, 'Visitors', 'from-emerald-600 to-teal-600');
+    renderProgressBreakdown('top-referrers-container', stats.referrerViews, 'Visits', 'from-blue-600 to-cyan-600');
+
+    // Store & Render Visitor Logs
+    currentVisitorLogsData = stats.visitorLogs || [];
+    renderVisitorLogs(currentVisitorLogsData);
 
   } catch (err) {
     console.error('Error loading stats:', err);
@@ -366,6 +408,25 @@ document.getElementById('search-input').addEventListener('input', () => {
   clearTimeout(searchTimeout);
   searchTimeout = setTimeout(loadInquiries, 300);
 });
+
+const visitorSearchInput = document.getElementById('visitor-search-input');
+if (visitorSearchInput) {
+  visitorSearchInput.addEventListener('input', (e) => {
+    const q = e.target.value.trim().toLowerCase();
+    if (!q) {
+      renderVisitorLogs(currentVisitorLogsData);
+    } else {
+      const filtered = currentVisitorLogsData.filter(v =>
+        (v.path && v.path.toLowerCase().includes(q)) ||
+        (v.city && v.city.toLowerCase().includes(q)) ||
+        (v.ip && v.ip.toLowerCase().includes(q)) ||
+        (v.referrer && v.referrer.toLowerCase().includes(q)) ||
+        (v.country && v.country.toLowerCase().includes(q))
+      );
+      renderVisitorLogs(filtered);
+    }
+  });
+}
 
 // Auto Login check
 async function checkAuthOnLoad() {
