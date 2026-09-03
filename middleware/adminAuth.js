@@ -7,8 +7,7 @@ function adminAuth(req, res, next) {
     return res.status(401).json({ error: 'Please enter an admin key to sign in.' });
   }
 
-  // Accept Anmol@12345 or configured ADMIN_KEY
-  if (providedKey.trim() !== expectedKey && providedKey.trim() !== 'Anmol@12345') {
+  if (providedKey.trim() !== expectedKey) {
     return res.status(401).json({ error: 'Invalid secret admin key.' });
   }
 

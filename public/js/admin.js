@@ -457,8 +457,7 @@ async function checkAuthOnLoad() {
       showLogin();
     }
   } catch (err) {
-    // Fallback if offline/network error occurs
-    showDashboard();
+    showLogin('Connection error. Please sign in with admin key.');
   }
 }
 
