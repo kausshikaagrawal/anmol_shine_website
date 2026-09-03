@@ -141,26 +141,35 @@ function renderProgressBreakdown(containerId, dataMap, labelSuffix = 'Visits', g
   }).join('');
 }
 
+function edgeStatusBadge(status = 200) {
+  if (status === 201) return '<span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-emerald-100 text-emerald-800 border border-emerald-300">201 CREATED</span>';
+  if (status === 429) return '<span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-amber-100 text-amber-900 border border-amber-300 animate-pulse">429 RATE LIMIT</span>';
+  if (status === 401) return '<span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-purple-100 text-purple-800 border border-purple-300">401 AUTH</span>';
+  if (status === 404) return '<span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-red-100 text-red-800 border border-red-300">404 NOT FOUND</span>';
+  return '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-200">200 OK</span>';
+}
+
 function renderVisitorLogs(logs) {
   const visitorTbody = document.getElementById('visitor-logs-body');
   if (!visitorTbody) return;
   if (logs && logs.length) {
     visitorTbody.innerHTML = logs.map(v => `
       <tr class="hover:bg-slate-50 border-t border-slate-100">
-        <td class="p-3 text-slate-500 whitespace-nowrap">${new Date(v.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
+        <td class="p-3 text-slate-500 whitespace-nowrap text-[11px]">${new Date(v.created_at).toLocaleString([], { dateStyle: 'short', timeStyle: 'short' })}</td>
         <td class="p-3 font-semibold text-[#001e40]">${v.path}</td>
+        <td class="p-3 whitespace-nowrap">${edgeStatusBadge(v.status || 200)}</td>
         <td class="p-3">
           <span class="inline-flex items-center gap-1 font-medium text-slate-700">
             📍 ${v.city || 'Kanpur'}, ${v.country || 'India'}
           </span>
         </td>
         <td class="p-3 text-slate-500 font-mono text-[11px]">${v.ip || '127.0.0.1'}</td>
-        <td class="p-3 text-slate-500 max-w-[150px] truncate" title="${v.referrer}">${v.referrer}</td>
-        <td class="p-3 text-slate-400 max-w-[200px] truncate" title="${v.user_agent}">${v.user_agent}</td>
+        <td class="p-3 text-slate-500 max-w-[140px] truncate" title="${v.referrer}">${v.referrer}</td>
+        <td class="p-3 text-slate-400 max-w-[180px] truncate" title="${v.user_agent}">${v.user_agent}</td>
       </tr>
     `).join('');
   } else {
-    visitorTbody.innerHTML = '<tr><td colspan="6" class="p-6 text-center text-slate-400">No matching edge visitor logs found.</td></tr>';
+    visitorTbody.innerHTML = '<tr><td colspan="7" class="p-6 text-center text-slate-400">No matching edge visitor logs found.</td></tr>';
   }
 }
 

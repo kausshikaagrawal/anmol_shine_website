@@ -84,7 +84,7 @@ const seedInquiries = [
     product_interest: 'Paint Thinner (NC & PU Grade)',
     message: 'We require 200 Litres of NC Thinner monthly for our vehicle repaint workshop in Delhi NCR. Please send bulk pricing and MSDS.',
     status: 'new',
-    created_at: new Date().toISOString()
+    created_at: new Date(Date.now() - 1 * 86400000).toISOString()
   },
   {
     id: 2,
@@ -93,10 +93,10 @@ const seedInquiries = [
     email: 'sanjay@mehtawoodcraft.com',
     phone: '+91-9876543210',
     company: 'Mehta Woodcrafts',
-    product_interest: 'Wood Finish Hi-Gloss Thinner',
+    product_interest: 'Wood Finish Hi-Gloss Thinner No. SP-56',
     message: 'Interested in 500 Litres drum supply of Hi-Gloss Wood Polish Thinner. Kindly quote FOB rates.',
     status: 'contacted',
-    created_at: new Date().toISOString()
+    created_at: new Date(Date.now() - 3 * 86400000).toISOString()
   },
   {
     id: 3,
@@ -108,7 +108,67 @@ const seedInquiries = [
     product_interest: 'Mineral Turpentine Oil (MTO)',
     message: 'Looking for dealership / distribution partnership in Gujarat state for MTO and Kerosene solvents.',
     status: 'closed',
-    created_at: new Date().toISOString()
+    created_at: new Date(Date.now() - 6 * 86400000).toISOString()
+  },
+  {
+    id: 4,
+    type: 'quote',
+    name: 'Tariq Al-Mansoor',
+    email: 'tariq@gulfcoatings.ae',
+    phone: '+971-501234567',
+    company: 'Gulf Industrial Coatings LLC (Dubai, UAE)',
+    product_interest: 'Retarder - Cum - Thinner No. RT-105',
+    message: 'Urgent inquiry for 200L Steel Barrels export to Jebel Ali Port, UAE. High ambient humidity retarder required.',
+    status: 'contacted',
+    created_at: new Date(Date.now() - 10 * 86400000).toISOString()
+  },
+  {
+    id: 5,
+    type: 'quote',
+    name: 'Hans Weber',
+    email: 'h.weber@deutschchemie.de',
+    phone: '+49-30987654',
+    company: 'Deutsch Chemie GmBH (Hamburg, Germany)',
+    product_interest: 'General Purpose Thinner No. GP-50',
+    message: 'Requesting sample test kit and ISO 14001 compliance documentation for 15 MT monthly bulk container import.',
+    status: 'new',
+    created_at: new Date(Date.now() - 14 * 86400000).toISOString()
+  },
+  {
+    id: 6,
+    type: 'quote',
+    name: 'WhatsApp Lead — Kenya Export',
+    email: 'whatsapp@lead.local',
+    phone: '+254-712345678',
+    company: 'Nairobi Paint Depot (Kenya)',
+    product_interest: 'Pure Turpentine Oil Range',
+    message: 'Visitor initiated WhatsApp inquiry from page: /products.html (Inquired about 200ml retail PET bottles)',
+    status: 'closed',
+    created_at: new Date(Date.now() - 18 * 86400000).toISOString()
+  },
+  {
+    id: 7,
+    type: 'contact',
+    name: 'Amit Patel',
+    email: 'apatel@patelhardware.com',
+    phone: '+91-9723456789',
+    company: 'Patel Hardware & Paints',
+    product_interest: 'Anmol Shine Thinner No. S4 / 54',
+    message: 'Wholesale inquiry for 50 cartons of 1 Litre commercial thinner bottles for Ahmedabad retail market.',
+    status: 'contacted',
+    created_at: new Date(Date.now() - 25 * 86400000).toISOString()
+  },
+  {
+    id: 8,
+    type: 'quote',
+    name: 'David Chen',
+    email: 'dchen@singaporecoats.sg',
+    phone: '+65-91234567',
+    company: 'Singapore Marine Paints Pte Ltd',
+    product_interest: 'Anmol Shine Eagle Thinner',
+    message: 'Requesting C&F shipping rates to Singapore port for Heavy-Duty PU compatible thinner.',
+    status: 'new',
+    created_at: new Date(Date.now() - 32 * 86400000).toISOString()
   }
 ];
 
@@ -195,27 +255,42 @@ if (DatabaseSync) {
 const visitorLogsMem = [];
 
 function generateInitialVisitorLogs() {
-  const cities = ['Kanpur', 'Kanpur', 'Lucknow', 'New Delhi', 'Mumbai', 'Bengaluru', 'Ahmedabad', 'Jaipur'];
-  const paths = ['/', '/', '/', '/products.html', '/products.html', '/about.html', '/contact.html'];
-  const referrers = ['Google Search', 'Direct', 'Direct', 'WhatsApp Business', 'Indiamart', 'Direct'];
+  const locations = [
+    { city: 'Kanpur', country: 'India', ip: '106.213.44.' },
+    { city: 'Dubai', country: 'UAE', ip: '185.120.99.' },
+    { city: 'Hamburg', country: 'Germany', ip: '82.165.197.' },
+    { city: 'London', country: 'United Kingdom', ip: '31.13.127.' },
+    { city: 'New York', country: 'USA', ip: '198.51.100.' },
+    { city: 'Nairobi', country: 'Kenya', ip: '197.232.88.' },
+    { city: 'Singapore', city: 'Singapore', country: 'Singapore', ip: '128.199.200.' },
+    { city: 'Tokyo', country: 'Japan', ip: '133.242.180.' },
+    { city: 'Sydney', country: 'Australia', ip: '139.130.4.' },
+    { city: 'Kanpur', country: 'India', ip: '49.36.210.' },
+    { city: 'Mumbai', country: 'India', ip: '122.160.88.' }
+  ];
+
+  const paths = ['/', '/', '/', '/products.html', '/products.html', '/about.html', '/contact.html', '/api/inquiries', '/admin.html', '/api/admin/stats'];
+  const referrers = ['Google Search', 'Direct', 'Direct', 'WhatsApp Business', 'Indiamart', 'Vercel CDN', 'Direct'];
   const uas = [
     'Mozilla/5.0 (Linux; Android 14; Mobile) Chrome/122.0.0.0',
     'Mozilla/5.0 (iPhone; CPU iPhone OS 17_4 like Mac OS X) Mobile/15E148',
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0.0.0',
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Safari/605.1.15'
   ];
-  const ips = ['106.213.44.', '157.33.12.', '49.36.210.', '122.160.88.', '182.73.19.'];
+  const statuses = [200, 200, 200, 200, 200, 201, 200, 429, 200, 200];
 
   const now = Date.now();
   for (let i = 137; i >= 1; i--) {
+    const loc = locations[i % locations.length];
     const timeOffsetMs = i * (14 * 60 * 1000) + Math.floor(Math.random() * 180000);
     const dateStr = new Date(now - timeOffsetMs).toISOString();
     visitorLogsMem.push({
       id: i,
       path: paths[i % paths.length],
-      ip: ips[i % ips.length] + ((i * 19) % 250 + 1),
-      country: 'India',
-      city: cities[i % cities.length],
+      ip: loc.ip + ((i * 19) % 250 + 1),
+      country: loc.country,
+      city: loc.city || 'Kanpur',
+      status: statuses[i % statuses.length],
       user_agent: uas[i % uas.length],
       referrer: referrers[i % referrers.length],
       created_at: dateStr
