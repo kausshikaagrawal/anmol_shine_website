@@ -376,6 +376,65 @@ document.getElementById('add-contact-form').addEventListener('submit', async (e)
   }
 });
 
+// Change Key Modal Handlers
+const changeKeyBtn = document.getElementById('change-key-btn');
+const changeKeyModal = document.getElementById('change-key-modal');
+const closeKeyModalBtn = document.getElementById('close-key-modal-btn');
+const changeKeyForm = document.getElementById('change-key-form');
+const keyChangeError = document.getElementById('key-change-error');
+const keyChangeSuccess = document.getElementById('key-change-success');
+
+if (changeKeyBtn && changeKeyModal) {
+  changeKeyBtn.addEventListener('click', () => {
+    changeKeyModal.classList.remove('hidden');
+    keyChangeError.classList.add('hidden');
+    keyChangeSuccess.classList.add('hidden');
+    changeKeyForm.reset();
+  });
+
+  if (closeKeyModalBtn) {
+    closeKeyModalBtn.addEventListener('click', () => {
+      changeKeyModal.classList.add('hidden');
+    });
+  }
+
+  changeKeyForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const currentKey = document.getElementById('current-key-input').value.trim();
+    const newKey = document.getElementById('new-key-input').value.trim();
+    const confirmKey = document.getElementById('confirm-key-input').value.trim();
+
+    keyChangeError.classList.add('hidden');
+    keyChangeSuccess.classList.add('hidden');
+
+    if (newKey !== confirmKey) {
+      keyChangeError.textContent = 'New secret key and confirmation do not match.';
+      keyChangeError.classList.remove('hidden');
+      return;
+    }
+
+    try {
+      const res = await adminFetch('/api/admin/change-key', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ currentKey, newKey })
+      });
+
+      if (res.success) {
+        setAdminKey(newKey);
+        keyChangeSuccess.textContent = 'Admin secret key updated successfully!';
+        keyChangeSuccess.classList.remove('hidden');
+        setTimeout(() => {
+          changeKeyModal.classList.add('hidden');
+        }, 1500);
+      }
+    } catch (err) {
+      keyChangeError.textContent = err.message || 'Failed to update admin key.';
+      keyChangeError.classList.remove('hidden');
+    }
+  });
+}
+
 // Export to CSV
 document.getElementById('export-csv-btn').addEventListener('click', () => {
   if (!currentInquiriesData.length) {

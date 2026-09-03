@@ -19,6 +19,41 @@ router.post('/login', (req, res) => {
 // All routes below require a valid x-admin-key header
 router.use(adminAuth);
 
+// POST /api/admin/change-key - update admin secret key
+router.post('/change-key', (req, res) => {
+  const { currentKey, newKey } = req.body || {};
+  const expectedKey = process.env.ADMIN_KEY || 'Anmol@12345';
+
+  if (!currentKey || currentKey.trim() !== expectedKey) {
+    return res.status(401).json({ error: 'Current admin key is incorrect.' });
+  }
+
+  if (!newKey || newKey.trim().length < 6) {
+    return res.status(400).json({ error: 'New admin key must be at least 6 characters long.' });
+  }
+
+  const updatedKey = newKey.trim();
+  process.env.ADMIN_KEY = updatedKey;
+
+  // Persist to .env file if available locally
+  try {
+    const fs = require('fs');
+    const path = require('path');
+    const envPath = path.join(__dirname, '..', '.env');
+    if (fs.existsSync(envPath)) {
+      let envContent = fs.readFileSync(envPath, 'utf-8');
+      if (envContent.includes('ADMIN_KEY=')) {
+        envContent = envContent.replace(/ADMIN_KEY=.*/g, `ADMIN_KEY=${updatedKey}`);
+      } else {
+        envContent += `\nADMIN_KEY=${updatedKey}\n`;
+      }
+      fs.writeFileSync(envPath, envContent);
+    }
+  } catch (e) {}
+
+  return res.json({ success: true, message: 'Admin key changed successfully!' });
+});
+
 // GET /api/admin/inquiries?status=new&type=quote&q=searchterm - list inquiries, newest first
 router.get('/inquiries', (req, res) => {
   const { status, type, q } = req.query;
